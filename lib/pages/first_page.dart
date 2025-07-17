@@ -21,15 +21,17 @@ class _FirstScreenState extends State<FirstScreen> {
   void _checkPalindrome() {
     // Tutup keyboard
     FocusScope.of(context).unfocus();
-    
+
     final text = _sentenceController.text.trim();
-    
+
     // Validasi input kosong
     if (text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please enter a sentence to check', 
-                      style: TextStyle(fontFamily: 'Poppins')),
+          content: Text(
+            'Please enter a sentence to check',
+            style: TextStyle(fontFamily: 'Poppins'),
+          ),
         ),
       );
       return;
@@ -58,22 +60,22 @@ class _FirstScreenState extends State<FirstScreen> {
   void _goToSecondScreen() {
     // Tutup keyboard
     FocusScope.of(context).unfocus();
-    
+
     final name = _nameController.text.trim();
     if (name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please enter your name', style: TextStyle(fontFamily: 'Poppins')),
+          content: Text(
+            'Please enter your name',
+            style: TextStyle(fontFamily: 'Poppins'),
+          ),
         ),
       );
       return;
     }
 
     Provider.of<AppState>(context, listen: false).setName(name);
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => SecondScreen()),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (_) => SecondScreen()));
   }
 
   @override
@@ -89,10 +91,12 @@ class _FirstScreenState extends State<FirstScreen> {
       resizeToAvoidBottomInset: true,
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF74C1C9), Color(0xFF2B637B)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+          image: DecorationImage(
+            image: AssetImage(
+              "assets/Background.png",
+            ), // Ganti path sesuai lokasi file kamu
+            fit: BoxFit
+                .cover, // Sesuaikan dengan kebutuhan (bisa juga BoxFit.fill, BoxFit.contain, dst)
           ),
         ),
         child: SafeArea(
@@ -100,9 +104,10 @@ class _FirstScreenState extends State<FirstScreen> {
             physics: ClampingScrollPhysics(),
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height - 
-                          MediaQuery.of(context).padding.top - 
-                          MediaQuery.of(context).padding.bottom,
+                minHeight:
+                    MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top -
+                    MediaQuery.of(context).padding.bottom,
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -118,7 +123,11 @@ class _FirstScreenState extends State<FirstScreen> {
                         color: Colors.white24,
                       ),
                       child: Center(
-                        child: Icon(Icons.person_add, size: 40, color: Colors.white),
+                        child: Icon(
+                          Icons.person_add,
+                          size: 40,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 48),
@@ -135,9 +144,15 @@ class _FirstScreenState extends State<FirstScreen> {
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide.none,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 14,
+                        ),
                       ),
-                      style: const TextStyle(fontFamily: 'Poppins', fontSize: 14),
+                      style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                      ),
                     ),
                     const SizedBox(height: 16),
 
@@ -153,14 +168,20 @@ class _FirstScreenState extends State<FirstScreen> {
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide.none,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 14,
+                        ),
                       ),
-                      style: const TextStyle(fontFamily: 'Poppins', fontSize: 14),
+                      style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                      ),
                     ),
-                    
+
                     // Spacer untuk menempatkan buttons di tengah
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                    
+
                     // Check Button
                     SizedBox(
                       width: double.infinity,
@@ -174,7 +195,10 @@ class _FirstScreenState extends State<FirstScreen> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: const Text('CHECK', style: TextStyle(fontFamily: 'Poppins', fontSize: 16)),
+                        child: const Text(
+                          'CHECK',
+                          style: TextStyle(fontFamily: 'Poppins', fontSize: 16),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -192,7 +216,10 @@ class _FirstScreenState extends State<FirstScreen> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: const Text('NEXT', style: TextStyle(fontFamily: 'Poppins', fontSize: 16)),
+                        child: const Text(
+                          'NEXT',
+                          style: TextStyle(fontFamily: 'Poppins', fontSize: 16),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 32),
